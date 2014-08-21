@@ -1,7 +1,25 @@
-## Put comments here that give an overall description of what your
-## functions do
+## ######################################################################
+## cachematrix.R
+## 
+## Functions to solve the inverse of a matrix and cache the result
+##
+## Example usage:
+##
+## > cachemat <- makeCacheMatrix(matrix(1, 1, 1))
+## > cacheSolve(cachemat)
+##      [,1]
+## [1,]    1
+## > cacheSolve(cachemat)
+## getting cached data
+##      [,1]
+## [1,]    1
+## 
+## ######################################################################
 
-## Write a short comment describing this function
+
+## Make a cacheable matrix. Get/set a matrix and cache its
+## inverse. Setting the matrix will clear the cache.
+## Returns a list object. 
 makeCacheMatrix <- function(x = matrix()) {
         cache <- NULL
         set <- function(y) {
@@ -16,8 +34,10 @@ makeCacheMatrix <- function(x = matrix()) {
              getinverse = getinverse)
 }
 
-## Write a short comment describing this function
-
+## Compute the inverse of a matrix. Takes a cacheable matrix (see
+## function makeCacheMatrix() above), and either returns a
+## precomputed/cached value or compute the inverse, cache and return
+## this.
 cacheSolve <- function(x, ...) {
         cache <- x$getinverse()
         if(!is.null(cache)) {
